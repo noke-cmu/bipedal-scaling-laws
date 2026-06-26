@@ -1,4 +1,4 @@
-# Allometric Scaling Laws for Bipedal Robots Simulations
+# Simulations for Allometric Scaling Laws for Bipedal Robots
 
 This repository lets you **simulate small walking robots at many different
 sizes** and see how their behaviour changes as they grow or shrink. It is the
@@ -9,10 +9,9 @@ simulation code behind the paper:
 > Sarah Bergbreiter, and Aaron M. Johnson (Carnegie Mellon University).
 > arXiv:[2603.22560](https://arxiv.org/abs/2603.22560).
 
-You do **not** need to know anything about these robots or the simulator to use it. Install 
-three things, run one command, and watch a robot walk. Minor note: This is a refactored 
-script from my original code that I tried to clean up for others to use. Please let me know 
-if you have any bugs.
+You do **not** need to know anything about these robots or the simulator to use this package. 
+Minor note: This is a refactored package from my original code that I tried to clean up for 
+others to use. Please let me know if you have any bugs.
 
 Each quasi-passive robot has a single motor at the hip and curved feet. 
 You can scale either them up or down (the `--scale` number is the leg-length multiplier)
