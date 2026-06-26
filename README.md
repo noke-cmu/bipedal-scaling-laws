@@ -20,7 +20,7 @@ git clone https://github.com//bipedal-scaling-laws.git
 cd bipedal-scaling-laws
 ```
 
-Create an isolated environment using either a Python venv or a conda env. You'll need to have Python 3.11 installed. If you choose to do conda, install the full Anaconda NOT miniconda. I recommend using Anaconda.
+Create an isolated environment using either a Python venv or a conda env. You'll need to have Python 3.11 installed. If you choose to do conda, install the full Anaconda NOT miniconda. I recommend using a conda env rather than a Python venv.
 
 **Option A: Python venv:**
 
