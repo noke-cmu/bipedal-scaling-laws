@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the accompanying paper."
+title: "Allometric Scaling Laws for Bipedal Robots (simulation code)"
+authors:
+  - family-names: Oke
+    given-names: Naomi
+  - family-names: Carter
+    given-names: Aja M.
+  - family-names: Gu
+    given-names: Ben
+  - family-names: Pride
+    given-names: Cordelia
+  - family-names: Man
+    given-names: Steven
+  - family-names: Bergbreiter
+    given-names: Sarah
+  - family-names: Johnson
+    given-names: Aaron M.
+preferred-citation:
+  type: article
+  title: "Allometric Scaling Laws for Bipedal Robots"
+  authors:
+    - family-names: Oke
+      given-names: Naomi
+    - family-names: Carter
+      given-names: Aja M.
+    - family-names: Gu
+      given-names: Ben
+    - family-names: Pride
+      given-names: Cordelia
+    - family-names: Man
+      given-names: Steven
+    - family-names: Bergbreiter
+      given-names: Sarah
+    - family-names: Johnson
+      given-names: Aaron M.
+  year: 2026
+  journal: "arXiv preprint"
+  identifiers:
+    - type: other
+      value: "arXiv:2603.22560"

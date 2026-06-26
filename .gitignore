@@ -1,0 +1,21 @@
+# Simulation outputs
+saved_sim_data/
+analysis_out/
+generated_urdf.txt
+*.mp4
+*.html
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+env/
+venv/
+.venv/
+
+# OS / editor
+.DS_Store
+*.swp
+.vscode/
+.idea/
