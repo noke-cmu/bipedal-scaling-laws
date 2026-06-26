@@ -66,8 +66,8 @@ speed, torque, and stability change with size.
 When you scale a robot up, how much heavier should it get? There are two rules
 you can pick from, each separately tuned:
 
-- **L2** — mass grows with leg length *squared* (m ∝ L²). Real bipedal robots actually do this.
-- **L3** — mass grows with leg length *cubed* (m ∝ L³). Volumetric scaling derive from isometric scaling.
+- **L^2**: mass grows with leg length *squared* (m ∝ L²). Real bipedal robots actually do this.
+- **L^3**: mass grows with leg length *cubed* (m ∝ L³). Volumetric scaling derive from isometric scaling.
   It is also seen in biology. It's kept here for comparison purposes. 
 
 The two laws use different motor-torque tuning because a bigger robot needs
@@ -389,6 +389,6 @@ trials".
 
 ## Citation and license
 
-If you use this code, please cite the paper — see [`CITATION.cff`](CITATION.cff)
-for the full entry. Released under the MIT [`LICENSE`](LICENSE). This work was
+If you use this code, please cite the paper (see [`CITATION.cff`](CITATION.cff)
+for the full entry). Released under the MIT [`LICENSE`](LICENSE). This work was
 supported in part by the National Science Foundation under Grant CMMI-2408884.
