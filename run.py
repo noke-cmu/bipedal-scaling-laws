@@ -71,7 +71,7 @@ def main():
     size.add_argument("--scales", type=float, nargs="+",
                       help="Several sizes to simulate in sequence.")
 
-    parser.add_argument("--duration", type=float, default=30,
+    parser.add_argument("--duration", type=float, default=30.0,
                         help="Simulation length in seconds (default: per-robot).")
     parser.add_argument("--save-data", action="store_true",
                         help="Save CSVs and plots under saved_sim_data/.")

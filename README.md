@@ -1,4 +1,4 @@
-# Bipedal Robot Scaling Simulations
+# Allometric Scaling Laws for Bipedal Robots Simulations
 
 This repository lets you **simulate small walking robots at many different
 sizes** and see how their behaviour changes as they grow or shrink. It is the
@@ -9,113 +9,36 @@ simulation code behind the paper:
 > Sarah Bergbreiter, and Aaron M. Johnson (Carnegie Mellon University).
 > arXiv:[2603.22560](https://arxiv.org/abs/2603.22560).
 
-You do **not** need to know anything about these robots or the simulator to use
-it. Install three things, run one command, and watch a robot walk. Minor note: This is a refactored script from my original code that I tried to clean up for others to use. Please let me know if you have any bugs.
----
+You do **not** need to know anything about these robots or the simulator to use it. Install 
+three things, run one command, and watch a robot walk. Minor note: This is a refactored 
+script from my original code that I tried to clean up for others to use. Please let me know 
+if you have any bugs.
 
-## Quick start
-
-```bash
-git clone https://github.com//bipedal-scaling-laws.git
-cd bipedal-scaling-laws
-```
-
-Create an isolated environment using either a Python venv or a conda env. You'll need to have Python 3.11 installed. If you choose to do conda, install the full Anaconda NOT miniconda. I recommend using a conda env rather than a Python venv.
-
-**Option A: Python venv:**
-
-```bash
-python3 -m venv scaling-env
-source scaling-env/bin/activate            # Windows: scaling-env\Scripts\activate
-```
-
-**Option B: conda:**
-
-```bash
-conda create -n scaling-env python=3.11 -y
-conda activate scaling-env
-```
-
-Then, in either case, install Drake and the project's dependencies:
-
-```bash
-pip install drake                  # the robotics simulator (provides pydrake)
-pip install -r requirements.txt    # numpy, pandas, matplotlib, etc.
-
-python verify_setup.py             # confirms install (~10 s, six [ok] lines)
-python run.py --robot zippy --law L2 --simulate    # watch Zippy walk
-```
-
-A MeshCat link prints in the terminal. Open it in your browser to watch the
-3-D viewer.
-
-## What this simulates
-
-The tiny "passive-style" walkers: each has a single motor at the hip and curved
-feet, and rocks forward almost like a wind-up toy. You can scale either of them
-up or down (the `--scale` number is the leg-length multiplier) to study how
-speed, torque, and stability change with size.
+Each quasi-passive robot has a single motor at the hip and curved feet. 
+You can scale either them up or down (the `--scale` number is the leg-length multiplier)
+to study how speed, torque, and stability change with size.
 
 | Robot | Size | Feet | Control |
 |-------|------|------|---------|
 | **Zippy (Ellipsoidal Feet)** | ~2.5 cm legs | Ellipsoidal (egg-shaped) | Bang-bang torque with mechanical end-stops. |
+| **Zippy (Spherical Feet) aka Scaled-Mugatu** | Zippy-sized | Spherical, scaled-down | Zippy's body with Mugatu-style round feet. It serves as a control case for foot shape. |
 | **Mugatu** | ~15 cm legs | Spherical (round) | Smooth sinusoidal control at the hip. |
-| **Zippy (Spherical Feet aka Scaled-Mugatu)** | Zippy-sized | Spherical, scaled-down | Zippy's body with Mugatu-style round feet -- a control case for foot shape. |
 
 When you scale a robot up, how much heavier should it get? There are two rules
 you can pick from, each separately tuned:
 
-- **L^2**: mass grows with leg length *squared* (m ∝ L²). Real bipedal robots actually do this.
-- **L^3**: mass grows with leg length *cubed* (m ∝ L³). Volumetric scaling derive from isometric scaling.
+- **L^2**: mass grows with leg length squared (m ∝ L²). Real bipedal robots actually do this.
+- **L^3**: mass grows with leg length cubed (m ∝ L³). Volumetric scaling derive from isometric scaling.
   It is also seen in biology. It's kept here for comparison purposes. 
 
 The two laws use different motor-torque tuning because a bigger robot needs
-much more torque under L3 than under L2. These two scaling laws live in two separate folders
+much more torque (tau ~ mL) under L^3 than under L^2. These two scaling laws live in two separate folders
 (`ml2_scaling/` and `ml3_scaling/`).
 
----
-
-## `run.py` : used to run the sim
-
-```bash
-python run.py --list          # show robots and laws
-python run.py --help          # full option list
-```
-
-Common things to do:
-
-```bash
-# Open the interactive viewer (no walking, visualie body/URDF, drag the joints around).
-python run.py --robot zippy --law L2
-
-# Simulate walking and save data + plots (needs --duration of at least 6 s).
-python run.py --robot zippy --law L2 --simulate --duration 25 --save-data
-
-# Example: A 2x-scaled Mugatu under the L3 law.
-python run.py --robot mugatu --law L3 --scale 2 --simulate
-
-# Sweep several sizes at once.
-python run.py --robot zippy --law L2 --scales 1 6.12 40 --simulate --save-data
-```
-
-| Option | Default | Meaning |
-|--------|---------|---------|
-| `--robot {zippy,mugatu,scaled_mugatu}` | — | Which walker (required). |
-| `--law {L2,L3}` | `L2` | Mass-scaling law. |
-| `--simulate` | off | Run the walking simulation. Omit it to get the joint-slider viewer. |
-| `--scale <x>` | `1.0` | One size to run (leg-length multiplier). |
-| `--scales <x ...>` | — | Several sizes to run in sequence. |
-| `--duration <s>` | per-robot | How long to simulate, in seconds. |
-| `--save-data` | off | Save CSVs and plots under the robot's `saved_sim_data/`. |
-| `--ground-friction <u>` | `0.9` | Friction with the ground. |
-| `--feet-friction <u>` | `0.9` | Friction at the feet. |
-
-Saved runs land in `<law-folder>/<robot>/saved_sim_data/<robot>_sc<scale>_<timestamp>/`
-as a folder with the data CSV, the plots, and a MeshCat recording you can replay.
 
 ---
 
-## What's in the repository
+## Repository Breakdown
 
 ```
 bipedal-scaling-laws/
@@ -152,6 +75,84 @@ from walker_sim import simulate, save_run
 result = simulate("zippy", "L2", scale=1.0, duration=25, collect_data=True)
 save_run(result, output_root="my_runs/")
 ```
+
+---
+
+## Quick Start
+
+```bash
+git clone https://github.com//bipedal-scaling-laws.git
+cd bipedal-scaling-laws
+```
+
+Create an isolated environment using either a Python venv or a conda env (I recommend using a conda env rather than a Python venv). You'll need to have Python 3.11 installed. If you choose to do conda, install the full Anaconda NOT miniconda. 
+
+**Option A: Python venv:**
+
+```bash
+python3 -m venv scaling-env
+source scaling-env/bin/activate            # Windows: scaling-env\Scripts\activate
+```
+
+**Option B: conda:**
+
+```bash
+conda create -n scaling-env python=3.11 -y
+conda activate scaling-env
+```
+
+Then, in either case, install Drake and the project's dependencies:
+
+```bash
+pip install drake                  # the robotics simulator (provides pydrake)
+pip install -r requirements.txt    # numpy, pandas, matplotlib, etc.
+
+python verify_setup.py             # confirms install (~10 s, six [ok] lines)
+python run.py --robot zippy --law L2 --simulate    # watch Zippy walk
+```
+
+A MeshCat link prints in the terminal that looks something like *http://localhost:####/download*. Open it in your browser to watch the
+3-D viewer.
+
+---
+
+## `run.py`: primary script used to run the sim
+
+```bash
+python run.py --list          # show robots and laws
+python run.py --help          # full option list
+```
+
+Example ways to run the code:
+
+```bash
+# Open the interactive viewer (no walking, visualie body/URDF, drag the joints around).
+python run.py --robot zippy --law L2
+
+# Simulate walking and save data + plots (needs --duration of at least 6 s).
+python run.py --robot zippy --law L2 --simulate --duration 25 --save-data
+
+# Example: A 2x-scaled Mugatu under the L3 law.
+python run.py --robot mugatu --law L3 --scale 2 --simulate
+
+# Sweep several sizes at once.
+python run.py --robot zippy --law L2 --scales 1 6.12 40 --simulate --save-data
+```
+
+| Option | Default | Meaning |
+|--------|---------|---------|
+| `--robot {zippy,mugatu,scaled_mugatu}` | — | Which walker (required). |
+| `--law {L2,L3}` | `L2` | Mass-scaling law. |
+| `--simulate` | off | Run the walking simulation. Omit it to get the joint-slider viewer. |
+| `--scale <x>` | `1.0` | One size to run (leg-length multiplier). |
+| `--scales <x ...>` | — | Several sizes to run in sequence. |
+| `--duration <s>` | `30.0s` | How long to simulate, in seconds. |
+| `--save-data` | off | Save CSVs and plots under the robot's `saved_sim_data/`. |
+| `--ground-friction <u>` | `0.9` | Friction with the ground. |
+| `--feet-friction <u>` | `0.9` | Friction at the feet. |
+
+Saved runs land in `<law-folder>/<robot>/saved_sim_data/<robot>_sc<scale>_<timestamp>/`
+as a folder with the data CSV, the plots, and a MeshCat recording you can replay.
 
 ---
 
@@ -386,7 +387,7 @@ trials".
 
 ---
 
-## Citation and license
+## Citation and License
 
 If you use this code, please cite the paper (see [`CITATION.cff`](CITATION.cff)
 for the full entry). Released under the MIT [`LICENSE`](LICENSE). This work was
