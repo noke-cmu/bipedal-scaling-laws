@@ -12,6 +12,8 @@ simulation code behind the paper:
 You do **not** need to know anything about these robots or the simulator to use
 it. Install three things, run one command, and watch a robot walk.
 
+Minor note: This is a refactored script from my original code that I tried to 
+clean up for others to use. Please let me know if you have any bugs.
 ---
 
 ## Quick start

@@ -7,8 +7,8 @@ Run this right after installing Drake and the requirements:
 
 It builds each robot model under both scaling laws and confirms the masses
 scale the way they should (L^2 vs L^3). It does NOT open a viewer or run a
-full walking trial -- it just proves that Drake, the meshes, and the robot
-models all load correctly. If this passes, `python run.py` will work.
+full walking trial. It just proves that Drake, the meshes, and the robot
+models all load correctly. If this passes, `python run.py` shhhoulllddd work.
 """
 import os
 import sys
