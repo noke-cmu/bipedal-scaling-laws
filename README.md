@@ -10,10 +10,7 @@ simulation code behind the paper:
 > arXiv:[2603.22560](https://arxiv.org/abs/2603.22560).
 
 You do **not** need to know anything about these robots or the simulator to use
-it. Install three things, run one command, and watch a robot walk.
-
-Minor note: This is a refactored script from my original code that I tried to 
-clean up for others to use. Please let me know if you have any bugs.
+it. Install three things, run one command, and watch a robot walk. Minor note: This is a refactored script from my original code that I tried to clean up for others to use. Please let me know if you have any bugs.
 ---
 
 ## Quick start
@@ -23,7 +20,7 @@ git clone https://github.com//bipedal-scaling-laws.git
 cd bipedal-scaling-laws
 ```
 
-Create an isolated environment using either a Python venv or a conda env.
+Create an isolated environment using either a Python venv or a conda env. You'll need to have Python 3.11 installed. If you choose to do conda, install the full Anaconda NOT miniconda. I recommend using Anaconda.
 
 **Option A: Python venv:**
 
