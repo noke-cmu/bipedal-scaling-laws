@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 """run.py - one entry point for every simulation in this repository.
 
-You pick a robot and a scaling law; this script does the rest. There are no
-folder names to remember.
-
 Examples
 --------
     # See what's available.
